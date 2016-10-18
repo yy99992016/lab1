@@ -1,5 +1,6 @@
 package gxtyujik;
-
+demaxiya
+alalal
 import java.util.Scanner;
 import java.util.Scanner;
 import java.util.regex.Matcher;
