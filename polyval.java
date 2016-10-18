@@ -1,6 +1,11 @@
 package gxtyujik;
+<<<<<<< HEAD
 mengduo
 
+=======
+demaxiya
+alalal
+>>>>>>> C4
 import java.util.Scanner;
 import java.util.Scanner;
 import java.util.regex.Matcher;
