@@ -55,7 +55,6 @@ public class polyval {
 		}
 		return np1;
 	}
-ilikeyou
 	public void Simplify(ArrayList<pol>  p1,ArrayList<val>  p2){
 		int i,j,k,num = 0,num1 = 0;
 		for(i = 0;i < p1.size();i++){
