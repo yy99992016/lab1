@@ -170,7 +170,8 @@ public class Lab1 {
 		}
 	}
 	else{
-		System.out.print("Error");
+		System.out.print("Error") ;//System out;;
+
 	}
 	}
 }
