@@ -19,7 +19,6 @@ public class Lab1 {
 		String Expression = sc.nextLine();
 		String[] aa = Expression.split("\\+");
 		String regex = "\\d*";
-
 		String regExp="\\D";
 		String regjus="^[a-z\\d*\\+\\*]+$";
 		String regjus1 = "[a-z]";

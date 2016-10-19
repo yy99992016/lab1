@@ -16,8 +16,6 @@ public class new_lab1 {
 		int a[][] = new int[10][10],i = 0,j = 0,k = 0;
 		int varn[] = new int[10];
 		int varn1[] = new int[10];
-
-
 		boolean jus = true;
 		char b[][] = new char[10][10];
 		String b1[] = new String[10];
