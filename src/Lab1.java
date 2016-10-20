@@ -10,13 +10,18 @@ public class Lab1 {
 		int varn[] = new int[10];
 		int varn1[] = new int[10];
 		boolean jus = true;
+<<<<<<< HEAD
 		char b[][] = new char[10][10];//×¢ÊÍ
 		String b1[] = new String[10];
+=======
+		char b[][] = new char[10][10];
+		String b1[] = new String[10];//×¢ÊÍ
+>>>>>>> C4
 		String b2[] = new String[10];
 		char varc[] = new char [10];
 		char varc1[][] = new char[10][10];
 		Scanner sc = new Scanner(System.in);
-		String Expression = sc.nextLine();
+		String Expression = sc.nextLine();//×¢ÊÍ   
 		String[] aa = Expression.split("\\+");
 		String regex = "\\d*";
 		String regExp="\\D";
