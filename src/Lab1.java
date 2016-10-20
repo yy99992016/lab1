@@ -10,7 +10,7 @@ public class Lab1 {
 		int varn[] = new int[10];
 		int varn1[] = new int[10];
 		boolean jus = true;
-		char b[][] = new char[10][10];
+		char b[][] = new char[10][10];//×¢ÊÍ
 		String b1[] = new String[10];
 		String b2[] = new String[10];
 		char varc[] = new char [10];
