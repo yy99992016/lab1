@@ -230,7 +230,7 @@ ilikeyou
 	}
 	public static void main(String[] args) {
 		int i;
-		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
+		long startMili=System.currentTimeMillis();
 		System.out.println("开始时间 "+startMili);
 		Scanner sc = new Scanner(System.in);
 		String Exp = sc.nextLine();
