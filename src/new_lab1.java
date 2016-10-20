@@ -13,7 +13,7 @@ public class new_lab1 {
 	public static void main(String[] args) {
 		class_Str Exp[] = new class_Str[10];
 		HashMap map = new HashMap();
-		int a[][] = new int[10][10],i = 0,j = 0,k = 0;
+		int a[][] = new int[10][10],i = 0,j = 0,k = 0;//×¢ÊÍ
 		int varn[] = new int[10];
 		int varn1[] = new int[10];
 		boolean jus = true;
