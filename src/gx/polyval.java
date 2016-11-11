@@ -24,7 +24,6 @@ public class polyval {
 		Pattern p1 = Pattern.compile(rejust);
 		Matcher m = p.matcher(Exp);
 		Matcher m1 = p1.matcher(Exp);
-		String[] sourceStrArray = Exp.split("\\+");
 		while(m1.find()){
 			np.ch.add(m1.group());
 	     }
@@ -56,7 +55,7 @@ public class polyval {
 		}
 		return np1;
 	}
-	public String Simplify(ArrayList<pol>  p1,ArrayList<val>  p2){
+	public String Simplify(ArrayList<pol> p1,ArrayList<val>  p2){
 		int i,j,k,num = 0,num1 = 0;
 		String ceshi = " ";
 		for(i = 0;i < p1.size();i++){
@@ -104,8 +103,17 @@ public class polyval {
 		}
 		return ceshi;
 	}
-	public void Derivative(ArrayList<pol>  p1,String Com){
+	public boolean Derivative(String  p0,String Com){
+		boolean flag = false;
 		int num = 0,i,j,num1 = 0,num2 = 0;
+		polyval p = new polyval();
+		ArrayList<pol> p1 = new ArrayList<pol>();
+		flag = p.just(p0);
+		if(flag){
+		String[] aa = p0.split("\\+");
+		for(i = 0;i < aa.length;i++){
+			p1.add(p.expression(aa[i]));
+		}
 		String rejust = "[a-z]";
 		for(i = 0;i < p1.size();i++){
 			num = 0;
@@ -153,6 +161,8 @@ public class polyval {
 			}
 			System.out.print(num1);
 		}
+		}
+		return flag;
 	}
 	public static boolean just(String Exp){
 		boolean just = true;
@@ -246,7 +256,7 @@ public class polyval {
 			String[] aa = Exp.split("\\+");
 			ArrayList<pol>  p1 = new ArrayList<pol>();
 			for(i = 0;i < aa.length;i++){
-				//p1.add(p.expression(aa[i]));
+				p1.add(p.expression(aa[i]));
 			}
 			Scanner sc1 = new Scanner(System.in);
 			String Com = sc1.nextLine();
@@ -261,7 +271,6 @@ public class polyval {
 							p2.add(p.Commend(aa1[i]));
 						}
 						ceshi = p.Simplify(p1,p2);
-						System.out.println(ceshi);
 					}
 					else{
 						System.out.println(Exp);
@@ -271,7 +280,7 @@ public class polyval {
 					Com = Com.replace("d/d","");
 					boolean just1 = p.just1(p1, Com);
 					if(just1){
-						p.Derivative(p1, Com);
+						//p.Derivative(p1, Com);
 					}
 					else{
 						System.out.println("Error");

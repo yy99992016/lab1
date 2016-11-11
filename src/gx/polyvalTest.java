@@ -11,7 +11,7 @@ public class polyvalTest {
 	@Test
 	public void testExpression() {
 		polyval  np = new polyval();
-		assertEquals(false,np.expression("8#b/c"));
+		assertEquals(true,np.Derivative("a*b","a"));
 
 	}
 
