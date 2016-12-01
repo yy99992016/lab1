@@ -55,9 +55,8 @@ public class polyval {
 		}
 		return np1;
 	}
-	public String Simplify(ArrayList<pol> p1,ArrayList<val>  p2){
+	public void Simplify(ArrayList<pol>  p1,ArrayList<val>  p2){
 		int i,j,k,num = 0,num1 = 0;
-		String ceshi = " ";
 		for(i = 0;i < p1.size();i++){
 			num = 0;
 			for(j = 0;j < p1.get(i).ch.size();j++){
@@ -75,18 +74,14 @@ public class polyval {
 			}
 			if(num < p1.get(i).ch.size()&&p1.get(i).ch.size() > 0){
 				System.out.print(p1.get(i).coef);
-				ceshi = ceshi.concat(String.valueOf(p1.get(i).coef));
 				for(j = 0;j < p1.get(i).ch.size();j++){
 					if(!p1.get(i).ch.get(j).equals("1")){
 						System.out.print("*");
-						ceshi = ceshi.concat("*");
 						System.out.print(p1.get(i).ch.get(j));
-						ceshi = ceshi.concat(p1.get(i).ch.get(j));
 					}
 				}
 				if(i < p1.size()-1){
 					System.out.print("+");
-					ceshi = ceshi.concat("+");
 				}
 			}
 			else{
@@ -95,25 +90,13 @@ public class polyval {
 		}
 		if(p1.get(i-1).ch.size() > 0&&num < p1.get(i-1).ch.size()&&num1 != 0){
 			System.out.print("+");
-			ceshi = ceshi.concat("+");
 		}
 		if(num1 != 0){
 			System.out.print(num1);
-			ceshi = ceshi.concat(String.valueOf(num1));
 		}
-		return ceshi;
 	}
-	public boolean Derivative(String  p0,String Com){
-		boolean flag = false;
+	public void Derivative(ArrayList<pol>  p1,String Com){
 		int num = 0,i,j,num1 = 0,num2 = 0;
-		polyval p = new polyval();
-		ArrayList<pol> p1 = new ArrayList<pol>();
-		flag = p.just(p0);
-		if(flag){
-		String[] aa = p0.split("\\+");
-		for(i = 0;i < aa.length;i++){
-			p1.add(p.expression(aa[i]));
-		}
 		String rejust = "[a-z]";
 		for(i = 0;i < p1.size();i++){
 			num = 0;
@@ -161,11 +144,10 @@ public class polyval {
 			}
 			System.out.print(num1);
 		}
-		}
-		return flag;
 	}
-	public static boolean just(String Exp){
+	public void just(String Exp){
 		boolean just = true;
+		polyval p = new polyval();
 		int num = 0;
 		String regjus="^[a-z\\d*\\+\\*]+$";
 		String rejust1 = "[a-z]";
@@ -222,7 +204,13 @@ public class polyval {
 				}
 			}
 		}
-		return just;
+		if(just){
+			System.out.println(Exp);
+			p.classify(Exp);
+		}
+		else{
+			System.out.println("Error");
+		}
 	}
 	public static boolean just1(ArrayList<pol> p1,String Com){
 		boolean just1 = false;
@@ -239,52 +227,37 @@ public class polyval {
 		}
 		return just1;
 	}
-	public static void main(String[] args) {
+	public void classify(String Exp){
 		int i;
-		String ceshi;
-		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
-		System.out.println("开始时间 "+startMili);
-		Scanner sc = new Scanner(System.in);
-		String Exp = sc.nextLine();
 		polyval p = new polyval();
-		boolean jus = p.just(Exp);
-		if(!jus){
-			System.out.println("Error");
+		String[] aa = Exp.split("\\+");
+		ArrayList<pol>  p1 = new ArrayList<pol>();
+		for(i = 0;i < aa.length;i++){
+			p1.add(p.expression(aa[i]));
 		}
-		else{
-			System.out.println(Exp);
-			String[] aa = Exp.split("\\+");
-			ArrayList<pol>  p1 = new ArrayList<pol>();
-			for(i = 0;i < aa.length;i++){
-				p1.add(p.expression(aa[i]));
-			}
-			Scanner sc1 = new Scanner(System.in);
-			String Com = sc1.nextLine();
-			if(Com.startsWith("!")){
-				Com = Com.replace("!","");
-				if(Com.startsWith("simplify")){
-					Com = Com.replace("simplify","");
-					if(Com != ""){
-						String aa1[] = Com.split("\\s");
-						ArrayList<val>  p2 = new ArrayList<val>();
-						for(i = 0;i < aa1.length;i++){
-							p2.add(p.Commend(aa1[i]));
-						}
-						ceshi = p.Simplify(p1,p2);
+		Scanner sc1 = new Scanner(System.in);
+		String Com = sc1.nextLine();
+		if(Com.startsWith("!")){
+			Com = Com.replace("!","");
+			if(Com.startsWith("simplify")){
+				Com = Com.replace("simplify","");
+				if(Com != ""){
+					String aa1[] = Com.split("\\s");
+					ArrayList<val>  p2 = new ArrayList<val>();
+					for(i = 0;i < aa1.length;i++){
+						p2.add(p.Commend(aa1[i]));
 					}
-					else{
-						System.out.println(Exp);
-					}
+					p.Simplify(p1,p2);
 				}
-				else if(Com.startsWith("d/d")){
-					Com = Com.replace("d/d","");
-					boolean just1 = p.just1(p1, Com);
-					if(just1){
-						//p.Derivative(p1, Com);
-					}
-					else{
-						System.out.println("Error");
-					}
+				else{
+					System.out.println(Exp);
+				}
+			}
+			else if(Com.startsWith("d/d")){
+				Com = Com.replace("d/d","");
+				boolean just1 = p.just1(p1, Com);
+				if(just1){
+					p.Derivative(p1, Com);
 				}
 				else{
 					System.out.println("Error");
@@ -294,7 +267,27 @@ public class polyval {
 				System.out.println("Error");
 			}
 		}
+		else{
+			System.out.println("Error");
+		}
+	}
+	public static void main(String[] args) {
+		int i;
+		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
+		System.out.println("开始时间 "+startMili);
+		Scanner sc = new Scanner(System.in);
+		String Exp = sc.nextLine();
+		polyval p = new polyval();
+		p.just(Exp);
+/*		if(!jus){
+			System.out.println("Error");
+		}
+		else{
+			System.out.println(Exp);
+			p.classify(Exp);
+		}*/
 	long endMili=System.currentTimeMillis();
+	System.out.println();
 	System.out.println("结束时间 "+endMili);
 	System.out.println("执行总时间："+(endMili-startMili)+"毫秒");
 	}
